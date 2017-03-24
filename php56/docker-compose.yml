@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+   db:
+     image: mysql:5.7
+     volumes:
+       - ../db_files:/var/lib/mysql
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: toor
+       MYSQL_DATABASE: dockyapp 
+       #MYSQL_USER: docky
+       #MYSQL_PASSWORD: docky
+
+   phpapp:
+     depends_on:
+       - db
+     image: php:5.6
+     build:
+      context: .
+      dockerfile: Dockerfile
+     links:
+      - db
+     volumes:
+      - ../www:/var/www/html
+     environment:
+       DB_HOST: db:3306
+       DB_PASSWORD: toor
+     ports:
+      - 8888:80
+
+   # phpmyadmin:
+   #   depends_on:
+   #     - db
+   #   image: phpmyadmin/phpmyadmin
+   #   ports:
+   #     - "8080:80"
+   #   volumes:
+   #    - ./phpmyadmin/sessions:/sessions
