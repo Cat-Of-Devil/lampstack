@@ -8,9 +8,11 @@ services:
      restart: always
      environment:
        MYSQL_ROOT_PASSWORD: toor
-       MYSQL_DATABASE: dockyapp 
+       MYSQL_DATABASE: czspaun 
        #MYSQL_USER: docky
        #MYSQL_PASSWORD: docky
+     ports:
+      - 3306:3306
 
    phpapp:
      depends_on:
@@ -23,17 +25,19 @@ services:
       - db
      volumes:
       - ../www:/var/www/html
+      - ../www/php.ini:/usr/local/etc/php/conf.d/php.ini
+      - ../www/virtualhost.conf:/etc/apache2/sites-available/001-virtualhost.conf
      environment:
        DB_HOST: db:3306
        DB_PASSWORD: toor
      ports:
-      - 8888:80
+      - 80:80
 
-   # phpmyadmin:
-   #   depends_on:
-   #     - db
-   #   image: phpmyadmin/phpmyadmin
-   #   ports:
-   #     - "8080:80"
-   #   volumes:
-   #    - ./phpmyadmin/sessions:/sessions
+   phpmyadmin:
+     depends_on:
+       - db
+     image: phpmyadmin/phpmyadmin
+     ports:
+       - "8080:80"
+     volumes:
+      - ../phpmyadmin/sessions:/sessions

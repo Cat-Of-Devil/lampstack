@@ -10,3 +10,10 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd
 
 RUN a2enmod rewrite headers
+
+RUN a2dissite 000-default
+
+COPY virtualhost.conf /etc/apache2/sites-available/001-virtualhost.conf
+RUN a2ensite 001-virtualhost
+
+#RUN chown www-data:www-data /var/www/html/error.log /var/www/html/access.log
