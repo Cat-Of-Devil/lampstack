@@ -1,3 +1,2 @@
-db_files/
-phpmyadmin/
-www/
+*
+!.docker/
