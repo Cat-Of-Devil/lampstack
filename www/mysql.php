@@ -1,10 +1,8 @@
 <?php
-
 # Code from https://gist.github.com/chales/11359952
-
 # Fill our vars and run on cli
 # $ php -f db-connect-test.php
-$dbname = 'dockyapp';
+$dbname = 'testdb';
 $dbuser = 'root';
 $dbpass = 'toor';
 $dbhost = 'db';
