@@ -1,15 +1,13 @@
-# Switchable LAMP Stack
-Provides the ability to customize developement environments.
+# LAMP Stack
+Provides customizable LAMP stack.
 
 It includes:
- * PHP 5.6.30, runs on port 8888 and PHP 7.1.3, runs on port 8889
- * www folder for sources
+ * PHP 5.6.30, and 7.1.3, from official docker images, both can run at the same time, on different ports
  * mysql data files on db_data folder
- * uses apache2
  * mysql 5.7.30 database
 
 Run with:
 
-Choose desired folder php56 / php71 and run `docker-compose up -d`.
+Enter folder .docker and run `docker-compose up -d` to start the stack.
 
 To be continued.
